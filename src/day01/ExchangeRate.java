@@ -39,6 +39,7 @@ public class ExchangeRate {
             System.out.println("K 또는 U 중 하나를 선택하세요.");
         }
 
+
     }catch (InputMismatchException e){
         System.out.println("올바른 형식으로 써주세요");
     }
