@@ -80,36 +80,90 @@ public class Ex07 {
 
     public static void main(String[] args){
         while(true){
-            System.out.println("1.등록(가입), 2.수정, 3.삭제, 4.검색, 5.목록 확인, 6.종료");
-            System.out.print("선택 : ");
-            int choice = sc.nextInt();
-            switch (choice){
-                case 1:
-                    accession();
-                    break;
-                case 2:
-                    correction();
-                    break;
-                case 3:
-                    Delete();
-                  break;
-                case 4:
-                    search();
-                    break;
-                case 5:
-                    inventory();
-                   break;
-                case 6:
-                    System.out.println("시스템을 종료합니다.");
-                    System.exit(0);
-                default:
-                    System.out.println("잘못된 입력 방식입니다.\n 다시 입력해주세요.");
-                    continue;
+            System.out.print("관리자 or 회원 : ");
+            String authority = sc.next();
+
+            if(authority.equals("관리자")){
+                System.out.println("관리자 계정으러 로그인 하고 싶으면 관리자 생일을 맞추시오");
+                System.out.print("생일 입력 : ");
+                String hap = sc.next();
+                if(hap.equals("0306")){
+                    System.out.println("로그인 성공");
+                    while(true){
+                        System.out.println("======= 관리자 모드 =======");
+                        System.out.println("1.등록(가입), 2.수정, 3.삭제, 4.검색, 5.목록 확인, 6.종료");
+                        System.out.print("선택 : ");
+                        int choice = sc.nextInt();
+                        switch (choice){
+                            case 1:
+                                accession();
+                                break;
+                            case 2:
+                                correction();
+                                break;
+                            case 3:
+                                Delete();
+                                break;
+                            case 4:
+                                search();
+                                break;
+                            case 5:
+                                inventory();
+                                break;
+                            case 6:
+                                System.out.println("시스템을 종료합니다.");
+                                System.exit(0);
+                            default:
+                                System.out.println("잘못된 입력 방식입니다.\n 다시 입력해주세요.");
+                                continue;
+                        }
+                    }
+                }
+                else {
+                    System.out.println("아닙니다. 로그인 실패");
+                    return;
+                }
+
+            }else if(authority.equals("회원")){
+                while(true){
+                    System.out.println("====== 회원 모드 ======");
+                    System.out.println("1.로그인, 2.등록(가입), 3.종료");
+                    System.out.print("선택 : ");
+                    int choice = sc.nextInt();
+                    switch (choice){
+                        case 1:
+                            login();
+                            break;
+                        case 2:
+                            accession();
+                            break;
+                        case 3:
+                            System.out.println("시스템을 종료합니다.");
+                            System.exit(0);
+
+                    }
+                }
+            }
+            else{
+                System.out.println("형식에 맞게 써주세요.");
+                continue;
             }
         }
     }
 
-    //메소드 안에서 다 객체 연결을해서 가동성이 높음
+    private static void login(){
+        System.out.print("이름 : ");
+        String name = sc.next();
+        if(h.containsKey(name)){
+            System.out.println("로그인 성공");
+            return;
+        }
+        else{
+            System.out.println("없는 회원 입니다.\n 회원가입부터 해주세요");
+        }
+
+    }
+
   private static void accession(){
         System.out.print("이름 : ");
         String name = sc.next();
